@@ -1,310 +1,375 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="description"
-        content="Workshop on Advanced Perception for Autonomous Healthcare.">
-  <meta name="keywords" content="workshop, advanced perception, healthcare">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Workshop on Advanced Perception for Autonomous Healthcare</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workshop on Advanced Perception for Autonomous Healthcare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-section-with-banner {
+            background-image: url('img/banner.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .hero-overlay {
+            background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay for better contrast on dark theme */
+        }
+        .section-title {
+            border-bottom: 3px solid #60A5FA; /* Lighter blue for dark theme accent */
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2); /* Adjusted shadow for dark */
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #60A5FA; /* Lighter blue for hover */
+        }
+        .btn-primary {
+            background-color: #60A5FA; /* Lighter blue for primary button */
+            color: #111827; /* Darker text for light button */
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #3B82F6; /* Slightly darker blue on hover */
+        }
+        .btn-secondary {
+            background-color: #4B5563; /* Darker gray for secondary button */
+            color: #F3F4F6; /* Light text */
+        }
+        .btn-secondary:hover {
+            background-color: #374151;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .schedule-time {
+            min-width: 100px; 
+        }
+        /* Loading spinner for dark theme */
+        .loader {
+            border: 4px solid #4B5563; /* Dark gray */
+            border-top: 4px solid #60A5FA; /* Lighter blue */
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .profile-img {
+            width: 8rem; /* 128px */
+            height: 8rem; /* 128px */
+            object-fit: cover; /* Ensures the image covers the area, cropping if necessary */
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+    <nav class="bg-gray-800 shadow-md fixed w-full z-50 top-0">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-xl font-bold text-gray-100 hover:text-blue-400 transition-colors">APAH 2025</a>
+            <div class="hidden md:flex space-x-4">
+                <a href="#home" class="nav-link text-gray-300">Home</a>
+                <a href="#about" class="nav-link text-gray-300">About</a>
+                <a href="#callforpapers" class="nav-link text-gray-300">Call for Papers</a>
+                <a href="#speakers" class="nav-link text-gray-300">Speakers</a>
+                <a href="#schedule" class="nav-link text-gray-300">Schedule</a>
+                <a href="#organizers" class="nav-link text-gray-300">Organizers</a>
+                <a href="#venue" class="nav-link text-gray-300">Venue</a>
+                <a href="#registration" class="nav-link text-gray-300">Register</a>
+                <a href="#contact" class="nav-link text-gray-300">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-300 focus:outline-none">
+                    <i class="fas fa-bars fa-lg"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-gray-800 shadow-lg">
+            <a href="#home" class="block px-6 py-3 text-gray-300 hover:bg-gray-700">Home</a>
+            <a href="#about" class="block px-6 py-3 text-gray-300 hover:bg-gray-700">About</a>
+            <a href="#callforpapers" class="block px-6 py-3 text-gray-300 hover:bg-gray-700">Call for Papers</a>
+            <a href="#speakers" class="block px-6 py-3 text-gray-300 hover:bg-gray-700">Speakers</a>
+            <a href="#schedule" class="block px-6 py-3 text-gray-300 hover:bg-gray-700">Schedule</a>
+            <a href="#organizers" class="block px-6 py-3 text-gray-300 hover:bg-gray-700">Organizers</a>
+            <a href="#venue" class="block px-6 py-3 text-gray-300 hover:bg-gray-700">Venue</a>
+            <a href="#registration" class="block px-6 py-3 text-gray-300 hover:bg-gray-700">Register</a>
+            <a href="#contact" class="block px-6 py-3 text-gray-300 hover:bg-gray-700">Contact</a>
+        </div>
+    </nav>
 
-  <link rel="stylesheet" href="bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <!--<link rel="icon" href="./static/images/favicon.svg"> -->
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
-  <style type="text/css">
-  .auto-style1 {
-	  color: #fff;
-	  font-size: medium;
-	  text-align: center;
-  }
-  .auto-style3 {
-	  color: #fafafa;
-	  text-align: justify;
-      text-justify: inter-word;
-
-  }
-  .auto-style4 {
-	  font-size: small;
-	  text-align: justify;
-      text-justify: inter-word;
-  }
-  .justified-text {
-  text-align: justify;
-  }
-  .auto-style5 {
-	  text-align: justify;
-	  color: #FAFAFA;
-	  margin-left: 40px;
-  }
-  .auto-style6 {
-	  font-size: x-large;
-	  text-align: left;
-  }
-  .auto-style7 {
-	  margin-left: 40px;
-  }
-  .auto-style9 {
-	  margin-left: 40px;
-	  color: #FAFAFA;
-  }
-  .auto-style10 {
-	  color: #FFF6D1;
-  }
-  .auto-style11 {
-	  color: #FFF8DE;
-  }
-  .auto-style12 {
-	  font-size: small;
-	color: #E8E8E8;
-}
-  .auto-style13 {
-	font-size: small;
-	text-align: left;
-}
-.auto-style14 {
-	font-size: medium;
-}
-  </style>
-  </head>
-<body style="background-color: #000000">
-
-<nav class="navbar" role="navigation" aria-label="main navigation" style="left: 6px; top: 0px; background-color: #000000">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://apahws.github.io/">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      </div>
-    </div>
-
-
-</nav>
-
-
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">
-		  <img alt="" src="img/banner.png" style="height: 500px" width="1024"></h1>
-          <div class="auto-style1">
-              Workshop Date TBD<br>Honolulu, Hawaii</div>
-
-          <div class="is-size-5 publication-authors">
-&nbsp;</div>
-
-          <div class="column has-text-centered">
-            <div>
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="https://openreview.net/group?id=thecvf.com/ICCV/2025/Workshop/APAH"
-                   class="external-link button is-normal is-rounded">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Submission @ Openreview</span>
+    <header id="home" class="hero-section-with-banner text-white"> 
+        <div class="hero-overlay pt-32 pb-16 md:pt-40 md:pb-24"> 
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight text-gray-50"> 
+                    Workshop on Advanced Perception for Autonomous Healthcare
+                </h1>
+                <p class="text-lg md:text-2xl mb-8 text-gray-200"> 
+                    (APAH@ICCV2025)
+                </p>
+                <p class="text-lg md:text-2xl mb-8 text-gray-200">
+                    Exploring the frontiers of AI-driven perception in modern healthcare solutions.
+                </p>
+                <p class="text-md md:text-xl mb-10 font-semibold text-gray-100"> 
+                    October 2025 (TBA) •  Honolulu, Hawaii, US                </p>
+                <a href="https://openreview.net/group?id=thecvf.com/ICCV/2025/Workshop/APAH" class="btn-primary font-bold py-3 px-8 rounded-lg text-lg transition duration-300">
+                    Submit to APAH2025
                 </a>
+                <a href="#callforpapers" class="ml-4 border border-gray-200 text-gray-200 font-bold py-3 px-8 rounded-lg text-lg hover:bg-gray-200 hover:text-gray-800 transition duration-300">
+                    Call for Papers
+                </a>
+            </div>
+        </div>
+    </header>
 
+    <main class="container mx-auto px-6 py-12">
 
-<section class="auto-style6">
-	<p class="auto-style7">&nbsp;</p>
-	<p class="auto-style7">&nbsp;</p>
-	<p class="auto-style7"><strong class="auto-style11">Scope</strong></p>
-	<p class="auto-style7">&nbsp;</p>
-</section>
+        <section id="about" class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-2 section-title text-gray-100">About the Workshop</h2> 
+            <div class="bg-gray-800 p-8 rounded-lg shadow-lg"> 
+                <p class="text-lg text-gray-300 mb-4 leading-relaxed"> 
+                    Welcome to the Workshop on Advanced Perception for Autonomous Healthcare (APAH), held in conjunction with ICCV 2025 in Honolulu, Hawaii.
+                </p>
+                <p class="text-lg text-gray-300 mb-4 leading-relaxed">
+                    This workshop seeks to investigate state-of-the-art technologies that enhance healthcare by making it more autonomous, efficient, and patient-focused, while tackling issues such as medical errors and the demand for precise diagnostics. Given the rapid advancements in computer vision and AI, the workshop is crucial for meeting the growing need for effective and accurate healthcare solutions. It offers a platform for researchers in AI and healthcare to exchange ideas, present their work, and collaborate on future initiatives.
+                </p>
+                <p class="text-lg text-gray-300 mb-4 leading-relaxed">
+                    The event will include invited talks by leading experts, panel discussions on critical topics, and interactive sessions for participants to share research and engage in problem-solving. This structure ensures a thorough exploration of both theoretical principles and practical applications, appealing to a diverse audience of computer vision researchers, clinicians, and industry professionals. The workshop emphasizes the use of advanced visual perception technologies to increase autonomy in healthcare. This aligns with the broader movement of incorporating AI and machine learning into medical practices, motivated by the need for greater diagnostic accuracy, fewer medical errors, and more efficient patient care. It also aims to promote collaboration between computer vision researchers and healthcare professionals, addressing challenges like the shortage of medical staff and rising healthcare costs.
+                </p>
+                </div>
+        </section>
 
+        <section id="callforpapers" class="py-12 bg-gray-800 -mx-6 px-6 rounded-lg">
+            <h2 class="text-3xl font-bold text-center mb-2 section-title text-gray-100">Call for Papers</h2>
+            <div class="bg-gray-700 p-8 rounded-lg shadow-lg">
+                <p class="text-lg text-gray-300 mb-4 leading-relaxed">
+                    Please submit your manuscript formatted according to <a href="https://iccv.thecvf.com/Conferences/2025/AuthorGuidelines" target="_blank" class="text-blue-400 hover:underline">ICCV 2025 Author Guidelines</a> to APAH2025 <a href="https://openreview.net/group?id=thecvf.com/ICCV/2025/Workshop/APAH" target="_blank" class="text-blue-400 hover:underline">OpenReview submission site</a>. Accepted papers are intended to be published in the ICCV 2025 Proceedings.
 
-<section class="has-text-left" id="Scope">
-              <p class="auto-style5">This workshop seeks to investigate state-of-the-art technologies that enhance healthcare by making it<br>more autonomous, 
-	efficient, and patient-focused, while tackling issues such as medical errors and the<br>demand for precise diagnostics. Given the rapid advancements in 
-	computer vision and AI, the workshop<br>is crucial for meeting the growing 
-	need for effective and accurate healthcare solutions. It offers<br>a 
-	platform for researchers in AI and healthcare to exchange ideas, present 
-	their work, and collaborate<br>on future initiatives. The event will include 
-	invited talks by leading experts, panel discussions on critical<br>topics, 
-	and interactive sessions for participants to share research and engage in 
-	problem-solving.<br>This structure ensures a thorough exploration of both 
-	theoretical principles and practical applications,<br>appealing to a diverse 
-	audience of computer vision researchers, clinicians, and industry 
-	professionals.<br>The workshop emphasizes the use of advanced visual 
-	perception technologies to increase autonomy<br>in healthcare. This aligns 
-	with the broader movement of incorporating AI and machine learning into<br>
-	medical practices, motivated by the need for greater diagnostic accuracy, 
-	fewer medical errors, and<br>more efficient patient care. It also aims to 
-	promote collaboration between computer vision researchers<br>and healthcare 
-	professionals, addressing challenges like the shortage of medical staff and 
-	rising healthcare<br>costs.</p>
-	</section>
+                </p>
+                <p class="text-lg text-gray-300 mb-4 leading-relaxed">
+                    We encourage submissions that report on novel theories, methods, and applications of advanced perception in autonomous healthcare.
+                </p>
 
-<section class="auto-style6">
-	<p class="auto-style7">&nbsp;</p>
-	<p class="auto-style7">&nbsp;</p>
-	<p class="auto-style9"><strong class="auto-style11">Call for Paper</strong></p>
-              <span class="link-block">
-	<p class="auto-style7">&nbsp;</p>
-</section>
+                <div class="mt-8 pt-6 border-t border-gray-600">
+                    <h3 class="text-2xl font-semibold text-gray-100 mt-6 mb-3">Topics of Interest</h3> 
+                    <p class="text-lg text-gray-300 mb-4 leading-relaxed">
+                        We invite contributions on a wide range of topics related to advanced perception for autonomous healthcare, including but not limited to:
+                    </p>
+                    <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2 pl-4"> 
+                        <li>Visual Sensing in Medical Environments</li>
+                        <li>Vision-Guided Surgical Robotics</li>
+                        <li>Patient modeling with fusion of computer vision and medical imaging</li>
+                        <li>3D and 4D perception of medical environments</li>
+                        <li>Construction of digital twins for healthcare with advanced perception</li>
+                        <li>Implicit modeling for healthcare</li>
+                        <li>Efficient modeling and visualization of medical data with NeRF and 3D Gaussian Splatting</li>
+                        <li>Physiological monitoring with computer vision</li>
+                        <li>Embodied AI for Healthcare</li>
+                        <li>Visual-Language Models for Medical Procedures</li>
+                        <li>Real-Time Vision Systems for Automated Medical Exams</li>
+                        <li>Privacy preservation in AI-empowered healthcare workflows</li>
+                        <li>Explainable visual perception algorithms for healthcare</li>
+                        <li>Foundation models for autonomous perception in healthcare environments</li>
+                    </ul>
+                </div>
 
-<section class="has-text-left" id="Scope">
-              <p class="auto-style5">
-              
-			  <strong class="auto-style10">We invite paper submissions with topics include, but not limited to:</strong></p>
-			  <p class="auto-style5">
-              
-			  &nbsp;</p>
-			  <p class="auto-style5">
-              
-• Visual Sensing in Medical Environments
+                <h3 class="text-2xl font-semibold text-gray-100 mt-8 mb-3">Timeline</h3>
+                <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2 pl-4">
+                    <li>Paper submission deadline: July 3, 2025</li>
+                    <li>Notification to authors: July 11, 2025</li>
+                    <li>Camera ready deadline: August 18, 2025</li>
+                    <li>Workshop Date: TBA</li>
+                </ul>
+            </div>
+        </section>
 
-</p>
-			  <p class="auto-style5">
-              
-			  • Vision-Guided Surgical Robotics
+        <section id="speakers" class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-2 section-title text-gray-100">Keynote Speakers</h2>
+            <p class="text-gray-400 text-center mb-12">Meet our distinguished keynote speakers.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="card bg-gray-800 p-6 rounded-lg shadow-lg text-center"> 
+                    <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT6BNp5-oWDyhQMTlwhtAPS0xLcEuI-HxmKfo8b5q1FTnyJ5HpcChgrc1wSBj265xxZFkqu9wcSbZ8j6b-sjLtnNw" alt="Nicolas Padoy" class="profile-img rounded-full mx-auto mb-4 border-4 border-gray-700" onerror="this.onerror=null;this.src='https://placehold.co/150x150/4B5563/E5E7EB?text=Image+Not+Found';"> 
+                    <h3 class="text-xl font-bold mb-1 text-gray-100">
+					<a href="https://camma.unistra.fr/npadoy/">Nicolas Padoy</a></h3>
+                    <p class="text-blue-400 mb-2">University of Strasbourg</p> 
+                    <p class="text-gray-400 text-sm"><span lang="zh-cn">Nicolas Padoy is a Professor of Computer Science at the University of Strasbourg, France, and the Scientific Director as well as Director of Computer Science and Artificial Intelligence Research at the IHU Strasbourg, a leading institute for minimally invasive surgery. He leads the CAMMA research group (Computational Analysis and Modeling of Medical Activities).</p>
+                </div>
+                <div class="card bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <img src="https://placehold.co/150x150/5EEAD4/1F2937?text=More\nSpeakers" alt="Keynote Speaker 2 (TBA)" class="profile-img rounded-full mx-auto mb-4 border-4 border-gray-700" onerror="this.onerror=null;this.src='https://placehold.co/150x150/4B5563/E5E7EB?text=Image+Not+Found';"> 
+                    <h3 class="text-xl font-bold mb-1 text-gray-100">To Be Announced</h3>
+                    <p class="text-teal-400 mb-2">[-]</p> 
+                    <p class="text-gray-400 text-sm">Stay tuned for updates on our lineup of leading experts in advanced perception for healthcare.</p>
+                </div>
+            </div>
+        </section>
 
-</p>
-			  <p class="auto-style5">
-              
-			  • Patient modeling with fusion of computer vision and medical imaging
+        <section id="schedule" class="py-12 bg-gray-800 -mx-6 px-6 rounded-lg">
+            <h2 class="text-3xl font-bold text-center mb-2 section-title text-gray-100">Workshop Program</h2>
+            <p class="text-gray-400 text-center mb-10">Workshop Program To Be Announced</p>
+            <div class="bg-gray-700 p-8 rounded-lg shadow-lg">
+            </div>
+        </section>
 
-</p>
-			  <p class="auto-style5">
-              
-			  • 3D and 4D perception of medical environments
+        <section id="organizers" class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-2 section-title text-gray-100">Organizers</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <img src="https://wuziyan.com/ziyan_wu.jpg" alt="Ziyan Wu" class="profile-img rounded-full mx-auto mb-4 border-4 border-gray-700" onerror="this.onerror=null;this.src='https://placehold.co/128x128/60A5FA/1F2937?text=ZW';">
+                    <h3 class="text-xl font-bold mb-1 text-gray-100">
+					<a href="https://wuziyan.com">Ziyan Wu</a></h3>
+                    <p class="text-blue-400 mb-2">United Imaging Intelligence</p>
+                    <p class="text-gray-400 text-sm">Boston, MA USA</p>
+                </div>
+                <div class="card bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <img src="https://meng-zheng.com/images/Meng.jpeg" alt="Meng Zheng" class="profile-img rounded-full mx-auto mb-4 border-4 border-gray-700" onerror="this.onerror=null;this.src='https://placehold.co/128x128/5EEAD4/1F2937?text=MZ';">
+                    <h3 class="text-xl font-bold mb-1 text-gray-100">
+					<a href="https://meng-zheng.com/">Meng Zheng</a></h3>
+                    <p class="text-teal-400 mb-2">United Imaging Intelligence</p>
+                    <p class="text-gray-400 text-sm"><span lang="zh-cn">Boston, 
+					MA USA</span></p>
+                </div>
+                <div class="card bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <img src="https://planche.me/images/benjaminplanche.jpg" alt="Benjamin Planche" class="profile-img rounded-full mx-auto mb-4 border-4 border-gray-700" onerror="this.onerror=null;this.src='https://placehold.co/128x128/FBBF24/1F2937?text=BP';">
+                    <h3 class="text-xl font-bold mb-1 text-gray-100">
+					<a href="https://planche.me/">Benjamin Planche</a></h3>
+                    <p class="text-yellow-400 mb-2"><span lang="zh-cn">United 
+					Imaging Intelligence</span></p>
+                    <p class="text-gray-400 text-sm"><span lang="zh-cn">Boston, 
+					MA USA</span></p>
+                </div>
+                <div class="card bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <img src="https://lh5.googleusercontent.com/U9sQNXJtW9meMGuuovWxfiCCsYHJKuTxyvZpbpe_MZAUp0f5pzhIUNXZpLlKOhuD_JxByr8yFkE40onOtMZBXNk=w1280" alt="Zhongpai Gao" class="profile-img rounded-full mx-auto mb-4 border-4 border-gray-700" onerror="this.onerror=null;this.src='https://placehold.co/128x128/60A5FA/1F2937?text=ZG';">
+                    <h3 class="text-xl font-bold mb-1 text-gray-100">
+					<a href="https://sites.google.com/site/gaozhongpai/home">Zhongpai Gao</a></h3>
+                    <p class="text-blue-400 mb-2"><span lang="zh-cn">United 
+					Imaging Intelligence</span></p>
+                    <p class="text-gray-400 text-sm"><span lang="zh-cn">Boston, 
+					MA USA</span></p>
+                </div>
+                <div class="card bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                     <img src="img/Anwesa.jpg" alt="Anwesa Choudhuri" class="profile-img rounded-full mx-auto mb-4 border-4 border-gray-700" onerror="this.onerror=null;this.src='https://placehold.co/128x128/5EEAD4/1F2937?text=AC';">
+                    <h3 class="text-xl font-bold mb-1 text-gray-100">
+					<a href="https://scholar.google.com/citations?user=KQnKUHKGFdUC&amp;hl=en">Anwesa Choudhuri</a></h3>
+                    <p class="text-teal-400 mb-2">United Imaging Intelligence</p>
+                    <p class="text-gray-400 text-sm"><span lang="zh-cn">Boston, 
+					MA USA</span></p>
+                </div>
+                <div class="card bg-gray-800 p-6 rounded-lg shadow-lg text-center">
+                    <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=S2BT6ogAAAAJ&citpid=4" alt="Terrence Chen" class="profile-img rounded-full mx-auto mb-4 border-4 border-gray-700" onerror="this.onerror=null;this.src='https://placehold.co/128x128/FBBF24/1F2937?text=TC';">
+                    <h3 class="text-xl font-bold mb-1 text-gray-100">
+					<a href="https://scholar.google.com/citations?user=S2BT6ogAAAAJ&amp;hl=en">Terrence Chen</a></h3>
+                    <p class="text-yellow-400 mb-2">United Imaging Intelligence</p>
+                    <p class="text-gray-400 text-sm"><span lang="zh-cn">Boston, 
+					MA USA</span></p>
+                </div>
+            </div>
+        </section>
 
-</p>
-			  <p class="auto-style5">
-              
-			  • Construction of digital twins for healthcare with advanced perception
+        <section id="venue" class="py-12 bg-gray-800 -mx-6 px-6 rounded-lg">
+            <h2 class="text-3xl font-bold text-center mb-2 section-title text-gray-100">Venue & Location</h2>
+            <p class="text-gray-400 text-center mb-10">The workshop will be held in conjunction with ICCV 2025.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="bg-gray-700 p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-semibold text-gray-100 mb-3">Workshop Location</h3>
+                    <p class="text-lg text-gray-300 mb-2"><i class="fas fa-map-marker-alt mr-2 text-blue-400"></i>Honolulu Convention Center</p>
+                    <p class="text-gray-300 mb-2">1801 Kalākaua Ave, Honolulu, HI 96815</p>
+                    <p class="text-gray-300 mb-4">USA</p>
+                    
+                    <p class="text-gray-300 mt-4">APAH is co-located with the <a href="https://iccv.thecvf.com/Conferences/2025/" target="_blank" class="text-blue-400 hover:underline">International Conference on Computer Vision (ICCV 2025)</a>.
+                    Please refer to the main ICCV 2025 website for details on travel and accommodation.</p>
+                </div>
+                <div class="rounded-lg shadow-lg overflow-hidden">
+                     <img src="https://i0.wp.com/vagobond.com/wp-content/uploads/2019/08/4297CC4B-CACB-4E01-8E1D-D3E3793E7C9B.jpeg" alt="Honolulu Convention Center" class="w-full h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/4B5563/E5E7EB?text=Venue+Image+Not+Found';">
+                </div>
+            </div>
+        </section>
 
-</p>
-			  <p class="auto-style5">
-              
-			  • Implicit modeling for healthcare
+        <section id="registration" class="py-16 text-center bg-blue-700 text-gray-100 -mx-6 px-6 rounded-lg"> 
+             <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold mb-4">Attending APAH@ICCV2025</h2>
+                <p class="text-lg mb-8 text-blue-200"> 
+                    To attend the APAH workshop, please register for ICCV 2025 and select our workshop. Registration details will be available on the main ICCV 2025 website.
+                </p>
+                <div class="max-w-xl mx-auto bg-gray-800 text-gray-200 p-8 rounded-lg shadow-xl"> 
+                    <p class="text-gray-300 mb-6">
+                        Registration for APAH is handled through the official ICCV 2025 conference registration system.
+                        Please visit the ICCV 2025 website for details on fees and how to register for workshops.
+                    </p>
+                    <a href="https://iccv.thecvf.com/Conferences/2025/" target="_blank" class="btn-primary font-bold py-4 px-10 rounded-lg text-xl transition duration-300 shadow-md hover:shadow-lg transform hover:scale-105">
+                        Go to ICCV 2025 Website
+                    </a>
+                </div>
+            </div>
+        </section>
 
-</p>
-			  <p class="auto-style5">
-              
-			  • Efficient modeling and visualization of medical data with NeRF and 3D Gaussian Splatting
+        <section id="contact" class="py-12">
+            <h2 class="text-3xl font-bold text-center mb-2 section-title text-gray-100">Contact Information</h2>
+            <div class="bg-gray-800 p-8 rounded-lg shadow-lg">
+                <div class="grid grid-cols-1 md:grid-cols-1 gap-8"> 
+                    <div class="mt-0"> 
+                        <h3 class="text-2xl font-semibold text-gray-100 mb-4 text-center md:text-left">Get in Touch</h3>
+                        <p class="text-gray-300 mb-2 text-center md:text-left">
+                            For general inquiries about the workshop, please contact:
+                        </p>
+                        <p class="text-lg text-blue-400 font-semibold mb-1 text-center md:text-left"><i class="fas fa-envelope mr-2"></i>Email: <a href="mailto:apahws@googlegroups.com" class="hover:underline">apahws@googlegroups.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-</p>
-			  <p class="auto-style5">
-              
-			  • Physiological monitoring with computer vision
+    <footer class="bg-gray-800 text-gray-400 py-10 text-center"> 
+        <div class="container mx-auto px-6">
+            <p class="mb-2">© 2025 Workshop on Advanced Perception for Autonomous Healthcare. All rights reserved.</p>
+            <p class="text-sm mt-2">
+                &nbsp;</p>
+        </div>
+    </footer>
 
-</p>
-			  <p class="auto-style5">
-              
-			  • Embodied AI for Healthcare
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = mobileMenu.querySelectorAll('a'); 
 
-</p>
-			  <p class="auto-style5">
-              
-			  • Visual-Language Models for Medical Procedures
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuButton.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
 
-</p>
-			  <p class="auto-style5">
-              
-			  • Real-Time Vision Systems for Automated Medical Exams
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                const icon = mobileMenuButton.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+    </script>
 
-</p>
-			  <p class="auto-style5">
-              
-			  • Privacy preservation in AI-empowered healthcare workflows
-
-</p>
-			  <p class="auto-style5">
-              
-			  • Explainable visual perception algorithms for healthcare
-
-</p>
-			  <p class="auto-style5">
-              
-			  • Foundation models for autonomous perception in healthcare environments
-
-</p>
-			  <p class="auto-style5">
-              
-			  &nbsp;</p>
-			  <p class="auto-style5">
-              
-			  Please submit your manuscript formatted according to
-			  <a href="https://iccv.thecvf.com/Conferences/2025/AuthorGuidelines">
-			  ICCV 2025 Author Guidelines</a> to APAH2025
-			  <a href="https://openreview.net/group?id=thecvf.com/ICCV/2025/Workshop/APAH">
-			  Openreview submission site</a>.</p>
-			  <p class="auto-style5">
-              
-			  &nbsp;</p>
-			  <p class="auto-style5">
-              
-			  Accepted papers are intended to be published in the ICCV 2025 
-			  Workshop Proceedings following the ICCV 2025 publication 
-			  guidelines.<br>
-
-</p>
-			  <p class="auto-style5">
-              
-			  &nbsp;</p>
-			  <p class="auto-style5">
-              
-			  <strong>
-              <span class="link-block">
-                <strong class="auto-style11">Timeline</strong></span><br>
-			  </strong>
-
-</p>
-			  <ul>
-				  <li>
-				  <p class="auto-style5">&nbsp;</p>
-				  </li>
-				  <li>
-				  <p class="auto-style5">Paper submission deadline: July&nbsp; 3, 
-				  2025<br>Notification to authors: July 11, 2025<br>Camera ready 
-				  deadline: August 18, 2025</p>
-				  </li>
-			  </ul>
-	</section>
-
-<footer class="auto-style3">
-	<p class="auto-style4">&nbsp;</p>
-              <span class="link-block">
-                <p class="auto-style5">&nbsp;</p>
-				  </span>
-	<p class="auto-style13">&nbsp;&nbsp; <span class="auto-style14">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-	For questions, please contact us at &nbsp;<a href="mailto:apahws@googlegroups.com">apahws@googlegroups.com</a> 
-	.&nbsp;&nbsp;&nbsp;&nbsp; </span> </p>
-	<p class="auto-style13">&nbsp;</p>
-	<p class="auto-style4">&nbsp;</p>
-	<p class="has-text-right">
-              <span class="link-block">
-                &nbsp;&copy 2025
-                APAH 2025 Organizing Committee. All rights reserved.</span></p>
-	<p class="auto-style4"></p>
-	<p class="auto-style4"></p>
-	<p class="auto-style4"></p>
-	<p class="auto-style4"></p>
-	<p class="auto-style12">&nbsp;</p>
-</footer>
-
-            
+</body>
+</html>
